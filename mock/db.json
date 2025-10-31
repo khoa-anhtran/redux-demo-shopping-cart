@@ -183,7 +183,20 @@
   ],
   "carts": [
     {
-      "items": {},
+      "items": {
+        "2": {
+          "quantity": 1,
+          "addedAt": "2025-10-31T10:15:41.936Z"
+        },
+        "3": {
+          "quantity": 1,
+          "addedAt": "2025-10-31T10:15:42.657Z"
+        },
+        "4": {
+          "quantity": 3,
+          "addedAt": "2025-10-31T10:15:43.129Z"
+        }
+      },
       "id": 1
     },
     {
@@ -211,16 +224,14 @@
   ],
   "users": [
     {
-      "id": 1,
-      "name": "Trần Anh Khoa"
+      "email": "khoa@mail.com",
+      "password": "$2a$10$.2RFHtjj1xiSYPCP1Lwv7eqhH1Gmspq1TTLqMTuhyIRNdCE4525ey",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Jane Smith"
-    },
-    {
-      "id": 3,
-      "name": "Alice Johnson"
+      "email": "a@mail.com",
+      "password": "$2a$10$VBErEwOxlRQJcl.Lg3KPMuZPSwgTSCfT8ISOo.x7GwgKqn6VxwmQq",
+      "id": 2
     }
   ]
 }

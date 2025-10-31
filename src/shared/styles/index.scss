@@ -1025,6 +1025,11 @@ $primary-hover: #1d4ed8;
         color: $muted;
     }
 
+    &__input {
+        padding: 4px 8px;
+        border-radius: 12px;
+    }
+
     &__select {
         width: 100%;
         border: 1px solid $border;
@@ -1054,6 +1059,7 @@ $primary-hover: #1d4ed8;
         color: #fff;
         background: $primary;
         cursor: pointer;
+        margin-top: 12px;
         transition:
             background 0.15s ease-in-out,
             transform 0.05s ease-in-out,

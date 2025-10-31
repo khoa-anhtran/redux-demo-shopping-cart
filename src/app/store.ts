@@ -1,5 +1,4 @@
 import productsSlice from "@/features/products/productsSlice"
-import usersSlice from "@/features/users/usersSlice"
 import cartReducer, { cartCheckouted, cartItemsRemoved, persistCart, productAdded, quantityAdjusted, quantityDecreased, quantityIncreased, selectAllCartItem } from "@/features/cart/cartSlice"
 import uiConfirmReducer, { acceptConfirm, cancelConfirm, openConfirm } from "@/features/ui/uiConfirmSlice"
 import statusOverlayReducer from "@/features/ui/statusOverlaySlice"
@@ -18,13 +17,11 @@ const store = configureStore({
         statusOverlay: statusOverlayReducer,
         auth: authReducer,
         [productsSlice.reducerPath]: productsSlice.reducer,
-        [usersSlice.reducerPath]: usersSlice.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
         .prepend(confirmListener.middleware)
         .prepend(cartAutosaveListener.middleware)
         .concat(productsSlice.middleware)
-        .concat(usersSlice.middleware),
 })
 
 export function askConfirm(

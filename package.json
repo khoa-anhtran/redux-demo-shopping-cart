@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev:api": "json-server --watch mock/db.json --routes mock/routes.json --port 4000 --delay 400",
+    "dev:api1": "json-server --watch mock/db.json --routes mock/routes.json --port 4000 --delay 400",
+    "dev:api": "node mock/server.cjs",
     "dev:web": "vite",
     "dev": "concurrently -k -n API,WEB -c yellow,cyan \"npm:dev:api\" \"npm:dev:web\"",
     "build": "tsc -b && vite build",
@@ -46,6 +47,8 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
+    "json-server": "0.17.4",
+    "json-server-auth": "^2.1.0",
     "msw": "1",
     "sass": "^1.93.2",
     "ts-jest": "^29.4.5",

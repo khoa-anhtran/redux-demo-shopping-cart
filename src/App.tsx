@@ -9,6 +9,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import { JSX } from 'react'
 import LoginView from './features/auth/LoginView'
 import { selectAuth } from './features/auth/authSlice'
+import RegisterView from './features/auth/RegisterView'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/login" element={<LoginView />} />
+        <Route path="/signup" element={<RegisterView />} />
       </Routes>
     </>
   )

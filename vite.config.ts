@@ -10,5 +10,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  server: { proxy: { "/api": { target: "http://localhost:4000", changeOrigin: true } } }
+  server: {
+    proxy: {
+      "/api": { target: "http://localhost:4000", changeOrigin: true },
+      "/register": { target: "http://localhost:4000", changeOrigin: true },
+      "/signin": { target: "http://localhost:4000", changeOrigin: true }
+    }
+  }
 })
