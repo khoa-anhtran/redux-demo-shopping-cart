@@ -1,6 +1,5 @@
 import { RootState } from "@/app/store";
 import { createSlice, createEntityAdapter, EntityState, PayloadAction, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
-import productsSlice, { Product } from "../products/productsSlice";
 
 export type CartItem = {
     id: number,
@@ -23,10 +22,11 @@ export interface CartState extends EntityState<CartItem, number> {
 
 const initialState: CartState = cartAdapter.getInitialState({ open: false, status: "idle", selectedItems: [], isSelectAll: false })
 
-export const fetchCart = createAsyncThunk<CartItem[]>(
+
+export const fetchCart = createAsyncThunk<CartItem[], number>(
     'cart/fetch',
-    async () => {
-        const r = await fetch("/api/carts/1")
+    async (userId) => {
+        const r = await fetch(`/api/carts/${userId}`)
         if (!r.ok) throw new Error(`GET cart failed: ${r.status}`)
 
         const data = (await r.json()) as { items: Record<string, Omit<CartItem, 'id'>> }
@@ -133,6 +133,9 @@ const cartSlice = createSlice({
             .addCase(fetchCart.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error.message ?? 'Failed to fetch cart'
+            }).addCase("auth/userLoggedOut", (state) => {
+                state.status = 'idle'
+                cartAdapter.removeAll(state)
             })
     }
 })

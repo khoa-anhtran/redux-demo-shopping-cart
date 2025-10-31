@@ -8,6 +8,7 @@ import MyConfirmDialog from '@/features/ui/MyConfirmDialog'
 import MyStatusOverlay from '@/features/ui/MyStatusOverlay'
 import uiReducer from "@/features/ui/uiConfirmSlice"
 import statusOverlayReducer from "@/features/ui/statusOverlaySlice"
+import authReducer from "@/features/auth/authSlice"
 
 export const confirmListener = createListenerMiddleware()
 
@@ -15,6 +16,7 @@ export function makeStore(preloaded?: Partial<{ cart: CartState }>) {
     return configureStore({
         reducer: {
             cart: cartReducer,
+            auth: authReducer,
             uiConfirm: uiReducer,
             statusOverlay: statusOverlayReducer,
             [productsSlice.reducerPath]: productsSlice.reducer

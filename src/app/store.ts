@@ -1,7 +1,9 @@
 import productsSlice from "@/features/products/productsSlice"
+import usersSlice from "@/features/users/usersSlice"
 import cartReducer, { cartCheckouted, cartItemsRemoved, persistCart, productAdded, quantityAdjusted, quantityDecreased, quantityIncreased, selectAllCartItem } from "@/features/cart/cartSlice"
 import uiConfirmReducer, { acceptConfirm, cancelConfirm, openConfirm } from "@/features/ui/uiConfirmSlice"
 import statusOverlayReducer from "@/features/ui/statusOverlaySlice"
+import authReducer from "@/features/auth/authSlice"
 
 import { Action, configureStore, createListenerMiddleware, isAnyOf, ThunkAction } from "@reduxjs/toolkit"
 
@@ -14,12 +16,15 @@ const store = configureStore({
         cart: cartReducer,
         uiConfirm: uiConfirmReducer,
         statusOverlay: statusOverlayReducer,
-        [productsSlice.reducerPath]: productsSlice.reducer
+        auth: authReducer,
+        [productsSlice.reducerPath]: productsSlice.reducer,
+        [usersSlice.reducerPath]: usersSlice.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
         .prepend(confirmListener.middleware)
         .prepend(cartAutosaveListener.middleware)
-        .concat(productsSlice.middleware),
+        .concat(productsSlice.middleware)
+        .concat(usersSlice.middleware),
 })
 
 export function askConfirm(
@@ -46,9 +51,9 @@ cartAutosaveListener.startListening({
 
         await api.delay(600)
 
-        const state = api.getState()
-        const items = selectAllCartItem(state as RootState)
-        const userId = 1
+        const state = api.getState() as RootState
+        const items = selectAllCartItem(state)
+        const userId = state.auth.userId
 
         try {
             await api.dispatch(persistCart({ items, userId } as any)).unwrap()

@@ -18,6 +18,21 @@ import productsSlice, { Product, useGetProductsQuery } from "@/features/products
 import uiReducer from "@/features/ui/uiConfirmSlice"
 import statusOverlayReducer from "@/features/ui/statusOverlaySlice"
 
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
+
+import { useDispatch, useSelector } from 'react-redux'
+import './App.css'
+import Header from './component/Header'
+import CartView from './features/cart/CartView'
+import ProductsView from './features/products/ProductsView'
+import MyConfirmDialog from './features/ui/MyConfirmDialog'
+import MyStatusOverlay from './features/ui/MyStatusOverlay'
+import { JSX } from 'react'
+import LoginView from './features/auth/LoginView'
+import { TextEncoder, TextDecoder } from 'util'
+    ; (global as any).TextEncoder = TextEncoder
+    ; (global as any).TextDecoder = TextDecoder as unknown as typeof globalThis.TextDecoder
+
 
 // MSW lifecycle
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))

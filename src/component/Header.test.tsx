@@ -71,5 +71,25 @@ describe("cart btn test", () => {
         expect(store.getState().cart.open).toBe(true)
     })
 
+    test('display current logged in user name', async () => {
+        setup()
 
+        const userName = screen.getByRole('heading', { name: /logged in as/i })
+
+        expect(userName).toBeInTheDocument()
+
+        expect(userName.textContent).toContain(store.getState().auth.name || '')
+    })
+
+    test('logout when click logout btn', async () => {
+        setup()
+
+        const logoutBtn = screen.getByRole('button', { name: /logout/i })
+
+        expect(logoutBtn).toBeInTheDocument()
+
+        await userEvent.click(logoutBtn)
+
+        expect(store.getState().auth.userId).toBeNull()
+    })
 })

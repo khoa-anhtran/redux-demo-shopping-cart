@@ -185,6 +185,42 @@
     {
       "items": {},
       "id": 1
+    },
+    {
+      "items": {
+        "2": {
+          "quantity": 1,
+          "addedAt": "2025-10-31T02:44:42.580Z"
+        },
+        "3": {
+          "quantity": 1,
+          "addedAt": "2025-10-31T02:44:41.358Z"
+        }
+      },
+      "id": 2
+    },
+    {
+      "items": {
+        "1": {
+          "quantity": 1,
+          "addedAt": "2025-10-31T02:44:53.591Z"
+        }
+      },
+      "id": 3
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Trần Anh Khoa"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith"
+    },
+    {
+      "id": 3,
+      "name": "Alice Johnson"
     }
   ]
 }

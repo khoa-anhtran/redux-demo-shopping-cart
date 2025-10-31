@@ -1,3 +1,4 @@
+import { selectAuth, userLoggedOut } from "@/features/auth/authSlice"
 import { cartToggled, selectCartTotalQty } from "@/features/cart/cartSlice"
 import { useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -5,14 +6,27 @@ import { useDispatch, useSelector } from "react-redux"
 const Header = () => {
     const totalQuantity = useSelector(selectCartTotalQty)
     const dispatch = useDispatch()
+    const { userId, name } = useSelector(selectAuth)
 
     const onClick = useCallback(() => {
         dispatch(cartToggled())
     }, [dispatch])
 
+    const onLogout = useCallback(() => {
+        dispatch(userLoggedOut())
+    }, [dispatch])
+
     return <header className="app-header">
         <div className="nav">
             <div className="brand">Redux Shopping Cart</div>
+            <div className="user">
+                <h5 className="user-name" role="heading" aria-level={2}>
+                    Logged in as {name}
+                </h5>
+                <button className="logout-btn" onClick={onLogout}>
+                    Logout
+                </button>
+            </div>
             <div className="cart">
                 <button className="cart-btn" onClick={onClick} aria-label="cart button">
                     <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24" transform="" id="injected-svg">

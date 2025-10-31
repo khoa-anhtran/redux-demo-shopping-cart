@@ -250,9 +250,6 @@ describe("user interact with cart", () => {
 
         checkboxes.forEach(checkbox => expect(checkbox).toBeChecked())
     })
-
-
-
 })
 
 

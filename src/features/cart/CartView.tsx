@@ -6,6 +6,7 @@ import { AppDispatch, askConfirm } from "@/app/store"
 import { showSuccess } from "../ui/statusOverlaySlice"
 import { roundTo } from "@/utils/math.helper"
 import { useAppDispatch } from "@/app/hook"
+import { selectAuth } from "../auth/authSlice"
 
 
 const CartView = () => {
@@ -17,6 +18,7 @@ const CartView = () => {
     const totalQty = useSelector(selectCartTotalQty)
     const selectedItems = useSelector(selectCartSelectedItems)
     const isSelectAll = useSelector(selectCartIsSelectAll)
+    const { userId } = useSelector(selectAuth)
 
     const { data: products, isFetching, error, isError } = useGetProductsQuery()
 
@@ -35,15 +37,14 @@ const CartView = () => {
 
     const previouslyFocused = useRef<HTMLElement | null>(null);
     const modalRef = useRef<HTMLDivElement>(null);
-    const isLoading = useRef(false)
-
+    const isFetchingCart = useRef(false)
 
     useEffect(() => {
-        if (status == "idle" && !isLoading.current) {
-            isLoading.current = true
-            dispatch(fetchCart())
+        if (status == "idle" && !isFetchingCart.current) {
+            isFetchingCart.current = true
+            dispatch(fetchCart(userId ?? 0))
         }
-    }, [status, dispatch])
+    }, [status, dispatch, userId])
 
     // lock scroll & manage focus
     useEffect(() => {
